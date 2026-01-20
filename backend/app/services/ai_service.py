@@ -6,7 +6,6 @@ class AIService:
         self.question_generator = pipeline("text2text-generation", model="mrm8488/t5-base-finetuned-question-generation-ap")
     
     def generate_questions(self, resume_text, num_questions=5):
-        # Extract key sections from resume
         prompts = self._create_prompts(resume_text)
         
         questions = []
@@ -22,7 +21,6 @@ class AIService:
             if len(questions) >= num_questions:
                 break
         
-        # Add fallback questions if AI fails
         if len(questions) < 3:
             questions.extend(self._get_fallback_questions()[:5-len(questions)])
         

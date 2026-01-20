@@ -26,4 +26,5 @@ class InterviewSession(Base):
     user_answers = Column(JSON, default=list)  
     feedback = Column(JSON, default=dict)     
     score = Column(Integer, nullable=True)
+    asked_questions = Column(JSON, default=list)
     created_at = Column(DateTime, default=datetime.utcnow)

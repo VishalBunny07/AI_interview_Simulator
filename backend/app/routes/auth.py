@@ -4,6 +4,7 @@ from passlib.context import CryptContext
 from app.database import SessionLocal
 from app.models import User
 from pydantic import BaseModel, EmailStr
+from app.utils.interviewer_state import get_reactions
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
@@ -55,3 +56,10 @@ async def login(login_data: UserLogin, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
     return {"message": "Login successful", "user_id": user.id}
+
+
+@router.get("/interviewer-reactions/{session_id}")
+def interviewer_reactions(session_id: int):
+    return {
+        "events": get_reactions(session_id)
+    }

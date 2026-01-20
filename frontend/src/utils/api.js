@@ -73,4 +73,55 @@ export const scoreInterview = async (payload) => {
 };
 
 
+//for getting interviewer reactions
+export async function getInterviewerReactions(sessionId) {
+  const res = await fetch(`/api/interview/interviewer-reactions/${sessionId}`);
+  return res.json();
+}
+
+//Live Followup Questions
+export const getLiveFollowup = async (question, answer) => {
+  const res = await api.post("/interview/live-followup", {
+    question,
+    answer
+  });
+  return res.data;
+};
+
+
+//get score progress
+export const getScoreProgress = async (sessionId) => {
+  const res = await api.get(`/interview/score-progress/${sessionId}`);
+  return res.data;
+};
+
+// Attach user ID to each request (if available)
+api.interceptors.request.use(
+  (config) => {
+    const userId = localStorage.getItem("user_id");
+
+    if (userId) {
+      config.headers["X-USER-ID"] = userId;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Handle 401 and 403 responses globally
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      localStorage.removeItem("user_id");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 export default api;

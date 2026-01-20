@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routes
+
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(interview.router, prefix="/interview", tags=["interview"])
 
