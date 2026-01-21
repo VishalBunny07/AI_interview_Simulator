@@ -79,17 +79,29 @@ npm start
 
 1. Home Screen
 
-![home screen](https://github.com/user-attachments/assets/2338574a-f4c9-4e11-bd5d-b3f4109b88c0)
+![Home Screen](https://github.com/user-attachments/assets/f1e79d6d-0353-4e05-a483-024f1a9d0094)
+
 
 2. Register Screen
 
-![register](https://github.com/user-attachments/assets/3cc50620-dc30-4edd-b74a-886ec11c5b14)
+![Register](https://github.com/user-attachments/assets/264a4cbf-cbad-4f3b-a88f-a6606b129faf)
+
 
 
 3. Login Screen
 
-![login](https://github.com/user-attachments/assets/bcf9b8f5-d595-4b80-8ef5-6960e39e4936)
+![Login](https://github.com/user-attachments/assets/f0cf08ba-2106-45db-80e7-5b5b5510768e)
+
 
 4. Dashboard
 
-![Dashboard](https://github.com/user-attachments/assets/fe3b049b-0e30-4bc0-8066-0a860c92a049)
+![Dashboard](https://github.com/user-attachments/assets/4dd9737d-bdb9-40ac-a499-b005dec0bc1e)
+
+5. Interview Page
+
+![Interview Page](https://github.com/user-attachments/assets/09faae83-67f2-409b-a79c-b94f32bef7b5)
+
+
+6. Result Page
+
+![Result Page](https://github.com/user-attachments/assets/7f19ea80-35cb-46c4-9ea9-6e6c6ed61917)
