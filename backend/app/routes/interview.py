@@ -451,7 +451,7 @@ def generate_interviewer_reaction(score: int):
         "text": random.choice(STATIC_REACTIONS[rtype])
     }
 
-
+# I have commented out the dynamic reaction generation because it was producing inconsistent results and sometimes giving inappropriate feedback. The static reactions are more reliable and still provide a good user experience. We can revisit dynamic reactions in the future with a more refined prompt and better model tuning.
 # def generate_interviewer_reaction(question: str, answer: str, score: int):
 #     model = load_question_generator()
 #     reaction_type = interviewer_reaction_type(score, answer)
