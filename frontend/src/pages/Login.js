@@ -9,7 +9,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await loginUser(email, password);
-      localStorage.setItem("user_id", response.user_id);
+      sessionStorage.setItem("user_id", response.user_id);
       alert('Login successful!');
       window.location.href = '/dashboard';
     } catch (error) {

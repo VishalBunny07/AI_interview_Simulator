@@ -5,18 +5,14 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem("user_id");
+  const isLoggedIn = !!sessionStorage.getItem("user_id");
 
   return (
     <Router>
       <Routes>
 
-        <Route
-          path="/login"
-          element={
-            isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login />
-          }
-        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route
           path="/register"

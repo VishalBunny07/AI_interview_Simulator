@@ -17,6 +17,11 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
 
   const speechRecognitionRef = useRef(null);
 
+  const currentQuestion =
+  typeof questions?.[currentQuestionIndex] === "string"
+    ? questions[currentQuestionIndex]
+    : questions?.[currentQuestionIndex]?.question || "";
+
   const goToNextQuestion = async () => {
   setShowFeedback(false);
   setLiveFeedback(null);
@@ -28,7 +33,7 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
     setUserAnswers(prev => [
       ...prev,
       {
-        question: questions[currentQuestionIndex]?.question || questions[currentQuestionIndex],
+        question: currentQuestion,
         answer: currentAnswer,
         mode: answerMode,
         timestamp: new Date().toISOString()
@@ -50,7 +55,7 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
     const speakQuestion = () => {
       if ('speechSynthesis' in window && answerMode === 'voice') {
         speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(questions[currentQuestionIndex]);
+       const utterance = new SpeechSynthesisUtterance(questions[currentQuestionIndex]?.question || "");
         utterance.rate = 0.9;
         utterance.onend = () => setInterviewStatus('answering');
         speechSynthesis.speak(utterance);
@@ -62,7 +67,7 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
     if (interviewStatus === 'reading') {
       speakQuestion();
     }
-  }, [currentQuestionIndex, interviewStatus, answerMode, questions]);
+  },  [currentQuestionIndex, interviewStatus, answerMode, questions]);
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window) {
@@ -84,7 +89,8 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
         setCurrentAnswer(transcript);
       };
 
-      speechRecognitionRef.current.start();
+      if (answerMode === "voice" && interviewStatus === "answering") {speechRecognitionRef.current.start();}
+
     }
 
     return () => {
@@ -118,17 +124,20 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
     setIsThinking(true);
 
     try {
-      const result = await getLiveFollowup(
-        questions?.[currentQuestionIndex]?.question || questions?.[currentQuestionIndex],
+     const result = await getLiveFollowup(
+        currentQuestion,
         currentAnswer
       );
 
+
       setLiveFeedback(result);
       setShowFeedback(true);
-        setInterviewerReactions(prev => [
-          ...prev,
-          { type: result?.type, text: result?.text }
-        ]);
+       if (result?.reaction?.text) {
+          setInterviewerReactions(prev => [
+            ...prev,
+            result.reaction
+          ]);
+        }
 
       if (result.followup_question) {
         setFollowup(result.followup_question);
@@ -175,7 +184,7 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
         finalAnswers = [
           ...finalAnswers,
           {
-            question: questions[currentQuestionIndex],
+            question: questions[currentQuestionIndex]?.question,
             answer: currentAnswer,
             mode: answerMode,
             timestamp: new Date().toISOString()
@@ -268,7 +277,10 @@ export default function Interview({ questions, sessionId, onInterviewComplete })
           >
 
           <p className="text-xl font-medium text-white">
-            {followupMode ? followup : questions[currentQuestionIndex]?.question || questions[currentQuestionIndex] || "Loading question..."}
+            {followupMode
+              ? followup
+              : questions[currentQuestionIndex]?.question || "Loading question..."}
+
           </p>
         </div>
 

@@ -22,7 +22,7 @@ export default function Dashboard() {
   const [scoreProgress, setScoreProgress] = useState({ current: 0, total: 0 });
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
 
-  const userId = localStorage.getItem("user_id");
+  const userId = sessionStorage.getItem("user_id");
 
   
   useEffect(() => {
@@ -42,9 +42,10 @@ export default function Dashboard() {
         resume_category: data.resume_category
       });
       setInterviewStarted(true);
-    } catch {
-      alert("Failed to load interview session.");
-    }
+    } catch (err) {
+        console.error(err);
+        alert(err?.response?.data?.detail || "Upload failed");
+      }
   };
 
   const openDetails = (sessionId) => {
@@ -53,7 +54,7 @@ export default function Dashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user_id");
+    sessionStorage.removeItem("user_id");
     window.location.href = '/';
   };
 

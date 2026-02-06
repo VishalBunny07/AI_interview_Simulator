@@ -23,6 +23,7 @@ class InterviewSession(Base):
     resume_text = Column(String, nullable=False)
     resume_category = Column(String, nullable=True)   
     generated_questions = Column(JSON, nullable=False)
+    interviewer_personality = Column(String, default="technical")
     user_answers = Column(JSON, default=list)  
     feedback = Column(JSON, default=dict)     
     score = Column(Integer, nullable=True)
