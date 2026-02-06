@@ -38,7 +38,7 @@ An AI-powered interview simulation platform that analyzes resumes, generates rol
 ---
 
 ## 📂 Project Structure
-
+```text
 AI-Interview-Simulator/
 ├── 📁 ai_model/
 │   ├── 📁 dataset/
@@ -113,7 +113,7 @@ AI-Interview-Simulator/
 ├── 📝 README.md
 ├── 📄 requirements.txt
 └── 🐍 test.py
-
+```
 
 
 ---
