@@ -1,4 +1,4 @@
-# 🎤 AI Interview Simulator
+# AI Interview Simulator
 
 An AI-powered interview simulation platform that analyzes resumes, generates role-based interview questions, evaluates user answers, and provides detailed scoring & feedback.
 
@@ -40,22 +40,79 @@ An AI-powered interview simulation platform that analyzes resumes, generates rol
 ## 📂 Project Structure
 
 AI-Interview-Simulator/
-│
-├── backend/
-│ ├── app/
-│ │ ├── routes/
-│ │ ├── models/
-│ │ ├── utils/
-│ │ ├── ml_scoring.py
-│ │ └── main.py
-│ └── requirements.txt
-│
-├── frontend/
-│ ├── src/
-│ ├── components/
-│ └── package.json
-│
-└── README.md
+├── 📁 ai_model/
+│   ├── 📁 dataset/
+│   ├── 📄 interview_score_model.ipynb
+│   ├── 📄 scoring_model_weights.npz
+│   └── 📄 training_data.jsonl
+├── 📁 backend/
+│   ├── 📁 app/
+│   │   ├── 📁 routes/
+│   │   │   ├── 🐍 auth.py
+│   │   │   └── 🐍 interview.py
+│   │   ├── 📁 services/
+│   │   │   └── 🐍 ai_service.py
+│   │   ├── 📁 utils/
+│   │   │   ├── 🐍 followup_prompts.py
+│   │   │   ├── 🐍 ideal_answer_cache.py
+│   │   │   ├── 🐍 interviewer_personalities.py
+│   │   │   ├── 🐍 interviewer_state.py
+│   │   │   ├── 🐍 question_prompts.py
+│   │   │   ├── 🐍 resume_category.py
+│   │   │   └── 🐍 scoring_progress.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 database.py
+│   │   ├── 🐍 main.py
+│   │   ├── 🐍 ml_resume_category.py
+│   │   ├── 🐍 ml_scoring.py
+│   │   └── 🐍 models.py
+│   ├── 📁 db_backup/
+│   │   └── 📄 ai_interview.sql
+│   ├── 📁 migrations/
+│   │   ├── 📁 versions/
+│   │   │   ├── 🐍 4de7f41c4835_recreate_tables.py
+│   │   │   └── 🐍 eb80cd39fbbf_add_resume_category.py
+│   │   ├── 📄 README
+│   │   ├── 🐍 env.py
+│   │   └── 📄 script.py.mako
+│   ├── ⚙️ alembic.ini
+│   └── 📄 requirements.txt
+├── 📁 docs/
+├── 📁 frontend/
+│   ├── 📁 public/
+│   │   ├── 📄 favicon.ico
+│   │   ├── 🌐 index.html
+│   │   ├── 🖼️ logo192.png
+│   │   ├── 🖼️ logo512.png
+│   │   ├── ⚙️ manifest.json
+│   │   └── 📄 robots.txt
+│   ├── 📁 src/
+│   │   ├── 📁 pages/
+│   │   │   ├── 📄 Dashboard.js
+│   │   │   ├── 📄 Login.js
+│   │   │   ├── 📄 Register.js
+│   │   │   ├── 📄 ViewDetails.js
+│   │   │   └── 📄 interview.js
+│   │   ├── 📁 utils/
+│   │   │   └── 📄 api.js
+│   │   ├── 🎨 App.css
+│   │   ├── 📄 App.js
+│   │   ├── 📄 App.test.js
+│   │   ├── 🎨 index.css
+│   │   ├── 📄 index.js
+│   │   ├── 🖼️ logo.svg
+│   │   ├── 📄 reportWebVitals.js
+│   │   └── 📄 setupTests.js
+│   ├── ⚙️ .gitignore
+│   ├── 📝 README.md
+│   ├── ⚙️ package-lock.json
+│   ├── ⚙️ package.json
+│   ├── 📄 postcss.config.js
+│   └── 📄 tailwind.config.js
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── 📄 requirements.txt
+└── 🐍 test.py
 
 
 
